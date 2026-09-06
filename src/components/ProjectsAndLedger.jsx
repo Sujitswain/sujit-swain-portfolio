@@ -27,7 +27,7 @@ export default function ProjectsAndLedger() {
                   <span className="font-mono text-[10px] bg-[#111A2E] text-slate-400 border border-[#1A2333] px-2 py-0.5 rounded select-none tracking-wider">
                     PROJECT 0{project.number}
                   </span>
-                  <a href="https://github.com/Sujitswain" target="_blank" rel="noreferrer" aria-label={`View ${project.title} source`} className="p-2 bg-[#111A2E]/50 text-slate-400 border border-[#1A2333] rounded hover:border-cyan-400 hover:text-white hover:scale-105 transition-all">
+                  <a href={project.url} target="_blank" rel="noreferrer" aria-label={`View ${project.title} source`} className="p-2 bg-[#111A2E]/50 text-slate-400 border border-[#1A2333] rounded hover:border-cyan-400 hover:text-white hover:scale-105 transition-all">
                     <SiGithub className="w-4 h-4" />
                   </a>
                 </div>

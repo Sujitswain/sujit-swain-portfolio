@@ -43,6 +43,7 @@ export const projects = [
   {
     number: "01",
     title: "Event-Driven Order Processing Infrastructure",
+    url: "https://github.com/Sujitswain/Order-Processing-System",
     description: "Architected a highly decoupled distributed microservices ecosystem designed to securely handle and orchestrate heavy transactional ingestion payloads under systemic pressure constraints.",
     accent: "from-cyan-500/20 via-transparent to-transparent",
     borderGlow: "group-hover:border-cyan-500/30",
@@ -57,6 +58,7 @@ export const projects = [
   {
     number: "02",
     title: "Distributed Edge API Gateway & Traffic Shaper",
+    url: "https://github.com/Sujitswain/Optimus-API-Gateway",
     description: "Designed a low-latency edge routing matrix and access controller layer capable of dynamically enforcing multi-tiered volumetric transaction caps across microservices clusters.",
     accent: "from-indigo-500/20 via-transparent to-transparent",
     borderGlow: "group-hover:border-indigo-500/30",
