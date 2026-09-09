@@ -107,7 +107,7 @@ export default function ProjectsAndLedger() {
                 </li>
                 <li className="flex items-start gap-2.5 leading-relaxed">
                   <FiHardDrive className="text-slate-600 mt-1 shrink-0" size={12} />
-                  <span>Used AWS S3 and CloudWatch for file storage, monitoring, and faster troubleshooting.</span>
+                  <span>Used AWS S3 and Lambda for file-processing workflows, with CloudWatch monitoring for faster troubleshooting.</span>
                 </li>
                 <li className="flex items-start gap-2.5 leading-relaxed">
                   <FiActivity className="text-slate-600 mt-1 shrink-0" size={12} />

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Icon from '../components/Icon'
 import SectionLabel from '../components/SectionLabel'
 import ContactSection from '../components/ContactSection'
@@ -7,9 +7,39 @@ import TechStackSection from '../components/TechStackSection'
 import ProjectsAndLedger from '../components/ProjectsAndLedger'
 import { profileData, stacks } from '../data/portfolio'
 
+const EXPERIENCE_START_DATE = new Date(2024, 0, 1)
+
+function getExperienceYears() {
+  const today = new Date()
+  const elapsedMonths = (today.getFullYear() - EXPERIENCE_START_DATE.getFullYear()) * 12
+    + today.getMonth() - EXPERIENCE_START_DATE.getMonth() + 1
+  const roundedYears = Math.ceil((elapsedMonths / 12) * 10) / 10
+  return roundedYears.toFixed(1)
+}
+
 export default function Home() {
   const [copied, setCopied] = useState(false)
-  const resumeUrl = `${import.meta.env.BASE_URL}Sujit_Swain_Java_Backend_2YOE.pdf`
+  const [experienceYears, setExperienceYears] = useState(getExperienceYears)
+  const resumeUrl = `${import.meta.env.BASE_URL}Sujit_Swain_Java_Backend_3YOE.pdf`
+
+  useEffect(() => {
+    let timeoutId
+
+    const refreshExperience = () => {
+      setExperienceYears(getExperienceYears())
+      const now = new Date()
+      const nextDay = new Date(now)
+      nextDay.setHours(24, 0, 0, 0)
+      timeoutId = window.setTimeout(refreshExperience, nextDay.getTime() - now.getTime())
+    }
+
+    const now = new Date()
+    const nextDay = new Date(now)
+    nextDay.setHours(24, 0, 0, 0)
+    timeoutId = window.setTimeout(refreshExperience, nextDay.getTime() - now.getTime())
+
+    return () => window.clearTimeout(timeoutId)
+  }, [])
 
   const copyProfile = async () => {
     try {
@@ -47,7 +77,7 @@ export default function Home() {
             <p className="hero-lede">I build secure APIs and reliable backend services that make complex business workflows faster and easier to maintain.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#projects">View projects <Icon name="arrow" /></a>
-              <a className="button button-quiet" href={resumeUrl} download="Sujit-Swain-Resume.pdf">Download resume <Icon name="download" /></a>
+              <a className="button button-quiet" href={resumeUrl} download="Sujit_Swain_Java_Backend_3YOE.pdf">Download resume <Icon name="download" /></a>
             </div>
             <div className="hero-meta">
               <span>Based in India</span>
@@ -107,7 +137,7 @@ export default function Home() {
             </article>
             <article className="metric">
               <p>lifecycle / enterprise environments</p>
-              <strong>2<span>+ yrs</span></strong>
+              <strong>{experienceYears}<span> yrs</span></strong>
               <div className="metric-detail">
                 <span>Production system management</span>
                 <span className="metric-bar"><i style={{ width: '75%' }} /></span>

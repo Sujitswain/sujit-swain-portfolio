@@ -4,7 +4,7 @@ import SectionLabel from './SectionLabel'
 import MessageFormConsole from './MessageFormConsole'
 
 export default function ContactSection() {
-  const resumeUrl = `${import.meta.env.BASE_URL}Sujit_Swain_Java_Backend_2YOE.pdf`
+  const resumeUrl = `${import.meta.env.BASE_URL}Sujit_Swain_Java_Backend_3YOE.pdf`
 
   return (
     <section className="contact section-wrap" id="contact">
@@ -26,7 +26,7 @@ export default function ContactSection() {
             <a 
               className="inline-flex items-center gap-2.5 font-mono text-xs uppercase tracking-wider px-5 py-3.5 font-bold rounded text-slate-300 bg-[#111A2E]/50 border border-[#1A2333] hover:bg-[#162235] hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 w-full sm:w-auto" 
               href={resumeUrl}
-              download="Sujit-Swain-Resume.pdf"
+              download="Sujit_Swain_Java_Backend_3YOE.pdf"
             >
               <FiDownload size={15} className="text-cyan-400" /> 
               Download resume <span className="text-[10px] bg-[#233550] px-1 py-0.5 rounded text-cyan-300 font-extrabold">PDF</span>
