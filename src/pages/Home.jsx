@@ -20,7 +20,7 @@ function getExperienceYears() {
 export default function Home() {
   const [copied, setCopied] = useState(false)
   const [experienceYears, setExperienceYears] = useState(getExperienceYears)
-  const resumeUrl = `${import.meta.env.BASE_URL}Sujit_Swain_Java_Backend_3YOE.pdf`
+  const resumeUrl = `${import.meta.env.BASE_URL}Sujit_Swain_Resume.pdf`
 
   useEffect(() => {
     let timeoutId
@@ -77,7 +77,7 @@ export default function Home() {
             <p className="hero-lede">I build secure APIs and reliable backend services that make complex business workflows faster and easier to maintain.</p>
             <div className="hero-actions">
               <a className="button button-primary" href="#projects">View projects <Icon name="arrow" /></a>
-              <a className="button button-quiet" href={resumeUrl} download="Sujit_Swain_Java_Backend_3YOE.pdf">Download resume <Icon name="download" /></a>
+              <a className="button button-quiet" href={resumeUrl} download="Sujit_Swain_Resume.pdf">Download resume <Icon name="download" /></a>
             </div>
             <div className="hero-meta">
               <span>Based in India</span>

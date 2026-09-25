@@ -1,7 +1,83 @@
+import { useEffect, useState } from 'react'
 import { SiGithub } from 'react-icons/si'
-import { FiArrowUpRight, FiGitPullRequest, FiCpu, FiHardDrive, FiActivity } from 'react-icons/fi'
+import { FiArrowUpRight, FiGitPullRequest, FiCpu, FiHardDrive, FiActivity, FiZap, FiFileText, FiUserCheck, FiLink, FiDatabase, FiCheck, FiX } from 'react-icons/fi'
 import SectionLabel from './SectionLabel'
 import { projects } from '../data/portfolio'
+
+export function WorkflowDemo({ compact = false }) {
+  const [workflowState, setWorkflowState] = useState('created')
+
+  useEffect(() => {
+    if (workflowState === 'created') {
+      const timer = window.setTimeout(() => setWorkflowState('awaiting'), 1800)
+      return () => window.clearTimeout(timer)
+    }
+
+    if (workflowState === 'callback') {
+      const timer = window.setTimeout(() => setWorkflowState('updated'), 1100)
+      return () => window.clearTimeout(timer)
+    }
+
+    if (workflowState === 'updated' || workflowState === 'declined') {
+      const timer = window.setTimeout(() => setWorkflowState('created'), 4200)
+      return () => window.clearTimeout(timer)
+    }
+  }, [workflowState])
+
+  const acceptTask = () => setWorkflowState('callback')
+  const declineTask = () => setWorkflowState('declined')
+  const isUpdated = workflowState === 'updated'
+  const isCallback = workflowState === 'callback'
+  const isDeclined = workflowState === 'declined'
+
+  return (
+    <div className={`workflow-demo ${compact ? 'workflow-demo-compact' : ''}`} aria-label="Interactive BPMN e-task workflow demonstration">
+      <div className="workflow-demo-header">
+        <span><i className="workflow-live-dot" /> BPMN / live execution</span>
+        <span className="workflow-run-id">RUN-2048</span>
+      </div>
+      <div className="workflow-track">
+        <div className="workflow-node workflow-node-done">
+          <span className="workflow-node-icon"><FiZap /></span>
+          <strong>workflow trigger</strong>
+          <small>event fired</small>
+        </div>
+        <span className="workflow-connector is-flowing" />
+        <div className="workflow-node workflow-node-active">
+          <span className="workflow-node-icon"><FiFileText /></span>
+          <strong>e-task created</strong>
+          <small>{workflowState === 'created' ? 'creating...' : 'complete'}</small>
+        </div>
+        <span className={`workflow-connector ${workflowState !== 'created' ? 'is-flowing' : ''}`} />
+        <div className={`workflow-node ${workflowState === 'awaiting' ? 'workflow-node-pending' : ''} ${isUpdated ? 'workflow-node-done workflow-node-approved' : ''} ${isDeclined ? 'workflow-node-declined' : ''}`}>
+          <span className="workflow-node-icon">{isDeclined ? <FiX /> : isUpdated ? <FiCheck /> : <FiUserCheck />}</span>
+          <strong>user approval</strong>
+          <small>{isUpdated ? 'accepted' : isDeclined ? 'declined' : 'awaiting action'}</small>
+          {!isUpdated && !isDeclined && <div className="workflow-approval-actions">
+            <button className="workflow-approval-button workflow-accept-button" type="button" onClick={acceptTask} aria-label="Accept task" title="Accept task"><FiCheck /></button>
+            <button className="workflow-approval-button workflow-decline-button" type="button" onClick={declineTask} aria-label="Decline task" title="Decline task"><FiX /></button>
+          </div>}
+        </div>
+        <span className={`workflow-connector ${isCallback || isUpdated ? 'is-flowing' : ''}`} />
+        <div className={`workflow-node ${isCallback ? 'workflow-node-pending' : ''} ${isUpdated ? 'workflow-node-done' : ''} ${isDeclined ? 'workflow-node-muted' : ''}`}>
+          <span className="workflow-node-icon"><FiLink /></span>
+          <strong>callback URL</strong>
+          <small>{isCallback || isUpdated ? 'received' : 'waiting'}</small>
+        </div>
+        <span className={`workflow-connector ${isUpdated ? 'is-flowing' : ''}`} />
+        <div className={`workflow-node ${isUpdated ? 'workflow-node-done' : ''} ${isDeclined ? 'workflow-node-muted' : ''}`}>
+          <span className="workflow-node-icon"><FiDatabase /></span>
+          <strong>database update</strong>
+          <small>{isUpdated ? 'status saved' : 'queued'}</small>
+        </div>
+      </div>
+      <div className="workflow-demo-footer">
+        <span className={isUpdated ? 'workflow-success' : isDeclined ? 'workflow-rejected' : ''}>{isUpdated ? 'execution.status = APPROVED' : isDeclined ? 'execution.status = REJECTED' : isCallback ? 'callback.status = RECEIVED' : 'execution.status = PENDING'}</span>
+        {isUpdated && <span className="workflow-callback-pulse">database updated</span>}
+      </div>
+    </div>
+  )
+}
 
 export default function ProjectsAndLedger() {
   return (
@@ -113,7 +189,17 @@ export default function ProjectsAndLedger() {
                   <FiActivity className="text-slate-600 mt-1 shrink-0" size={12} />
                   <span>Hardened deep security policies and reduced architectural code defects by 50% using SonarQube quality gate rules.</span>
                 </li>
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <FiGitPullRequest className="text-slate-600 mt-1 shrink-0" size={12} />
+                  <span>Developed a POC for BPMN-based workflow automation, creating e-task workflows and integrating callback mechanisms to update workflow execution status based on user actions.</span>
+                </li>
+                <li className="flex items-start gap-2.5 leading-relaxed">
+                  <FiActivity className="text-slate-600 mt-1 shrink-0" size={12} />
+                  <span>Implemented BDD/Cucumber scenarios for end-to-end BPMN workflow validation, covering e-task creation, approval/rejection, callback processing, and workflow status transitions.</span>
+                </li>
               </ul>
+
+              <WorkflowDemo />
             </div>
           </article>
 

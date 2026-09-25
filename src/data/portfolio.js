@@ -82,7 +82,9 @@ export const ledger = [
       "Developed high-performance RESTful APIs and decoupled microservices via Spring Boot for core business data workflows.",
       "Engineered multithreaded file-processing pipelines reducing pipeline latency from 10 minutes to 1.2 minutes.",
       "Configured cross-endpoint request tracking wrappers using MDC context mappings with customizable thread decorators.",
-      "Hardened software supply chain pipelines and eliminated 50% of outstanding technical debt vulnerabilities through strict SonarQube rule profiles."
+      "Hardened software supply chain pipelines and eliminated 50% of outstanding technical debt vulnerabilities through strict SonarQube rule profiles.",
+      "Developed a POC for BPMN-based workflow automation, creating e-task workflows and integrating callback mechanisms to update workflow execution status based on user actions.",
+      "Implemented BDD/Cucumber scenarios for end-to-end BPMN workflow validation, covering e-task creation, approval/rejection, callback processing, and workflow status transitions."
     ]
   }
 ];
