@@ -42,6 +42,21 @@ export const stacks = {
 export const projects = [
   {
     number: "01",
+    title: "BPMN Workflow Automation & CSV Processing",
+    url: "https://github.com/Sujitswain",
+    description: "Built dependable enterprise workflow automation around BPMN e-tasks, user decisions, callbacks, and high-volume CSV processing pipelines.",
+    accent: "from-lime-500/20 via-transparent to-transparent",
+    borderGlow: "group-hover:border-lime-500/30",
+    features: [
+      "Developed a POC for BPMN-based workflow automation with e-task creation and user-driven approval or rejection paths.",
+      "Integrated callback mechanisms to update workflow execution status after user actions and persist the final state.",
+      "Engineered multithreaded CSV processing pipelines that reduced execution time from 10 minutes to 1.2 minutes.",
+      "Implemented BDD/Cucumber scenarios covering e-task creation, callbacks, approvals, rejections, and workflow transitions."
+    ],
+    tags: ["BPMN Workflows", "Cucumber BDD", "Spring Boot", "CSV Processing", "Callback APIs"]
+  },
+  {
+    number: "02",
     title: "Event-Driven Order Processing Infrastructure",
     url: "https://github.com/Sujitswain/Order-Processing-System",
     description: "Architected a highly decoupled distributed microservices ecosystem designed to securely handle and orchestrate heavy transactional ingestion payloads under systemic pressure constraints.",
@@ -56,7 +71,7 @@ export const projects = [
     tags: ["Spring Boot", "Kafka Cluster", "Redis Nodes", "MySQL Layer", "AWS S3 Infrastructure"]
   },
   {
-    number: "02",
+    number: "03",
     title: "Distributed Edge API Gateway & Traffic Shaper",
     url: "https://github.com/Sujitswain/Optimus-API-Gateway",
     description: "Designed a low-latency edge routing matrix and access controller layer capable of dynamically enforcing multi-tiered volumetric transaction caps across microservices clusters.",
